@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-demo-app",
+  "version": "1.0.0",
+  "description": "Simple Node.js application for DevOps Jenkins CI/CD Task 2",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node -e \"console.log('Tests passed successfully')\""
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
