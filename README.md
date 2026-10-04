@@ -583,6 +583,8 @@ Expected port mapping:
 
 The GitHub repository contains the complete application source code, Docker configuration, Jenkins pipeline, tests, README, and screenshots.
 
+![GitHub Repository](Screenshots/Screenshot_2026-10-04-13-29-16-03_e5d3893ac03954c6bb675ef2555b879b.jpg)
+
 ---
 
 ## 2. Jenkins Pipeline Success
@@ -591,48 +593,38 @@ This screenshot shows the Jenkins pipeline completing the required stages succes
 
 ### Pipeline stages demonstrated
 
-```text
-Checkout
-   ↓
-Build
-   ↓
-Test
-   ↓
-Docker Build
-   ↓
-Deploy
-```
+- Checkout
+- Build
+- Test
+- Docker Build
+- Docker Run
+
+![Jenkins Pipeline Success](Screenshots/Screenshot_2026-10-04-13-29-21-33_e5d3893ac03954c6bb675ef2555b879b.jpg)
 
 ---
 
-## 3. Jenkins Console Output
+## 3. Jenkins Console Output - SUCCESS
 
-The Jenkins console output demonstrates the actual execution of the CI/CD pipeline.
+The Jenkins console output shows the pipeline execution and successful completion of all required steps.
 
-The console verifies:
-
-* Source code checkout
-* Dependency installation
-* Test execution
-* Docker image creation
-* Container deployment
-* Successful pipeline completion
+![Jenkins Console Output](Screenshots/Screenshot_2026-10-04-13-29-25-35_e5d3893ac03954c6bb675ef2555b879b.jpg)
 
 ---
 
-## 4. Docker Container / Deployment
+## 4. Jenkins Pipeline Stages
 
-This screenshot demonstrates the Docker deployment created through the CI/CD pipeline.
+The Jenkins pipeline stages are displayed successfully, showing the CI/CD workflow execution.
 
-The deployed container should expose the application through port `3000`.
-
----
-
-## 5. Application / Final Output
-
-This screenshot demonstrates the final application output after successful CI/CD deployment.
+![Jenkins Pipeline Stages](Screenshots/Screenshot_2026-10-04-13-29-30-03_e5d3893ac03954c6bb675ef2555b879b.jpg)
 
 ---
+
+## 5. Jenkins Build / Pipeline Steps
+
+This screenshot demonstrates the Jenkins build and pipeline steps executed as part of the CI/CD process.
+
+![Jenkins Pipeline Steps](Screenshots/Screenshot_2026-10-04-13-29-34-05_e5d3893ac03954c6bb675ef2555b879b.jpg)
+
 
 # 📊 CI/CD Result
 
