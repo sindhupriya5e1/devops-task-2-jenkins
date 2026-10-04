@@ -1,519 +1,316 @@
-:# 🚀 Jenkins CI/CD Pipeline with Docker
-
-A complete CI/CD implementation using Jenkins, GitHub, Node.js, and Docker to automatically build, test, containerize, and deploy a web application.
-
----
+# CI/CD Pipeline Automation using Jenkins, Docker & GitHub
 
 ## 📌 Project Overview
 
-This project demonstrates the implementation of a Continuous Integration and Continuous Deployment (CI/CD) pipeline using Jenkins.
+This project demonstrates a complete **CI/CD (Continuous Integration and Continuous Deployment) pipeline** using **GitHub, Jenkins, Docker, and Node.js**.
 
-The pipeline connects a GitHub repository with Jenkins and automates the following process:
+The main objective of this project is to automate the process of taking application source code from a GitHub repository, building and testing it through Jenkins, creating a Docker image, and running the application inside a Docker container.
 
-Developer
-↓
-GitHub Repository
-↓
-Jenkins
-↓
-Checkout Source Code
-↓
-Install Dependencies
-↓
-Run Tests
-↓
-Build Docker Image
-↓
-Deploy Docker Container
-↓
-Running Application
+The complete workflow is:
 
-The application is a simple Node.js web application that is packaged into a Docker container and deployed through Jenkins.
-
----
-
-## 🎯 Objective
-
-The main objectives of this project are:
-
-- Understand Jenkins CI/CD fundamentals
-- Integrate Jenkins with GitHub
-- Create and configure a Jenkins Pipeline
-- Automate application dependency installation
-- Automate application testing
-- Build a Docker image
-- Deploy the application using Docker
-- Understand CI/CD workflow
-- Verify successful application deployment
+**Developer → GitHub → Jenkins → Build → Test → Docker Build → Docker Run → Successful Deployment**
 
 ---
 
 ## 🛠️ Technologies Used
 
-| Technology | Purpose |
-|------------|---------|
-| Jenkins | CI/CD automation |
-| GitHub | Source code management |
-| Git | Version control |
-| Node.js | Application runtime |
-| Express.js | Web application framework |
-| Docker | Application containerization |
-| Linux/Ubuntu | Jenkins server environment |
+* **GitHub** – Source code repository
+* **Jenkins** – CI/CD automation server
+* **Docker** – Containerization
+* **Node.js** – Application runtime
+* **Git** – Version control
+* **GitHub Webhook / Pipeline** – Automated triggering
+* **Jenkins Pipeline** – Build automation
 
 ---
 
-# 📂 Project Structure
+# 1. Project Source Code
 
-```text
-devops-task-2-jenkins/
-│
-├── Dockerfile
-├── Jenkinsfile
-├── package.json
-├── package-lock.json
-├── server.js
-├── README.md
-│
-└── Screenshots/
-    ├── Screenshot_2026-10-04-13-29-16-03_e5d3893ac03954c6bb675ef2555b879b.jpg
-    ├── Screenshot_2026-10-04-13-29-21-....jpg
-    ├── Screenshot_2026-10-04-13-29-34-....jpg
-    ├── Screenshot_2026-10-04-13-29-....jpg
-    └── Screenshot_2026-10-04-....jpg
-🏗️ Application Architecture
-                 ┌─────────────────────┐
-                 │      Developer      │
-                 └──────────┬──────────┘
-                            │
-                         git push
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │       GitHub        │
-                 │   Source Repository │
-                 └──────────┬──────────┘
-                            │
-                       Webhook/Trigger
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │       Jenkins       │
-                 │    CI/CD Server     │
-                 └──────────┬──────────┘
-                            │
-              ┌─────────────┼─────────────┐
-              │             │             │
-              ▼             ▼             ▼
-          Checkout        Build/Test    Docker Build
-              │             │             │
-              └─────────────┼─────────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │   Docker Container  │
-                 │    Node.js App      │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │    Web Browser      │
-                 └─────────────────────┘
-🔄 CI/CD Workflow
-1. Developer Push
+The project source code is maintained in a GitHub repository.
 
-The developer makes changes to the application and pushes the updated code to the GitHub repository.
+GitHub is used to store the application files, Dockerfile, package.json, server.js and Jenkins pipeline configuration.
 
-2. GitHub Repository
+### Project Repository
 
-GitHub stores and manages the application source code and Jenkins configuration.
+GitHub Repository:
 
-3. Jenkins Checkout
+`https://github.com/sindhupriya5e1/nodejs-demo-app`
 
-Jenkins retrieves the latest source code from the GitHub repository.
+The repository contains the required files for building and running the Node.js application.
 
-4. Build
+---
 
-Jenkins installs the required Node.js dependencies.
+# 2. Node.js Application
 
-npm install
-5. Test
+The application is created using Node.js.
 
-Jenkins executes the configured application tests.
+The main application file is:
 
-npm test
-6. Docker Build
+`server.js`
 
-Jenkins builds a Docker image using the Dockerfile.
+The application starts a Node.js server and provides a simple response when the application is accessed.
 
-docker build -t devops-task-2-jenkins .
-7. Deploy
+The `package.json` file contains the project information and required dependencies.
 
-Jenkins runs the Docker container using the generated image.
+---
 
-docker run -d -p 3000:3000 devops-task-2-jenkins
-8. Application Verification
+# 3. Dockerfile
 
-The deployed application can be verified through the browser.
+A Dockerfile is created to containerize the Node.js application.
 
-🧩 Jenkins Pipeline Stages
+The Dockerfile defines:
 
-The Jenkinsfile contains the CI/CD pipeline stages.
+* Base Node.js image
+* Working directory
+* Application dependencies
+* Source code
+* Application port
+* Command to start the application
 
-Stage 1 — Checkout
+Docker allows the application to run consistently in an isolated container environment.
 
-Retrieves the source code from GitHub.
+---
 
-Purpose
+# 4. Docker Image Creation
 
-This stage ensures that Jenkins works with the latest version of the application source code.
+After creating the Dockerfile, a Docker image is built using the application source code.
 
-Stage 2 — Build
+The Docker image contains everything required to run the application, including:
 
-Installs the required Node.js dependencies.
+* Node.js environment
+* Application source code
+* Dependencies
+* Runtime configuration
 
-npm install
-Purpose
+The image can then be used to create a running Docker container.
 
-Downloads and installs the packages required by the application.
+---
 
-Stage 3 — Test
+# 5. Jenkins Setup
 
-Runs the application tests.
+Jenkins is used as the CI/CD automation tool.
 
-npm test
-Purpose
+The Jenkins server is configured to connect with the GitHub repository.
 
-Testing helps verify that the application is working correctly before deployment.
+A Jenkins Pipeline Job is created for this project.
 
-Stage 4 — Docker Build
+The pipeline automatically performs the required build and deployment steps.
 
-Creates the Docker image.
+---
 
-docker build -t devops-task-2-jenkins .
-Purpose
+# 6. Jenkins Pipeline Configuration
 
-Packages the application and its dependencies into a portable Docker image.
+A Jenkins Pipeline is created to automate the complete workflow.
 
-Stage 5 — Deploy
+The pipeline contains multiple stages.
 
-Runs the application inside a Docker container.
+### Pipeline Stages
 
-docker run -d -p 3000:3000 devops-task-2-jenkins
-Purpose
+1. **Checkout**
+2. **Install Dependencies**
+3. **Build**
+4. **Test**
+5. **Docker Build**
+6. **Docker Run / Deploy**
 
-Deploys the latest application version using Docker.
+Each stage performs a specific task in the CI/CD process.
 
-📝 Jenkinsfile
+---
 
-The project uses a Jenkins Pipeline to automate the complete CI/CD process.
+# 7. Checkout Stage
 
-The pipeline performs:
+In the Checkout stage, Jenkins retrieves the latest source code from the GitHub repository.
 
-Checkout
-   ↓
-Build
-   ↓
-Test
-   ↓
-Docker Build
-   ↓
-Deploy
-   ↓
-Application Running
+This ensures that Jenkins always works with the latest available version of the project.
 
-The Jenkinsfile is stored in the GitHub repository along with the application source code.
+**GitHub → Jenkins**
 
-🐳 Docker Configuration
+---
 
-Docker is used to containerize the Node.js application.
+# 8. Install Dependencies
 
-Dockerfile
+After checking out the source code, Jenkins installs the Node.js project dependencies using:
 
-The Dockerfile defines the environment required to run the application.
+`npm install`
+
+This downloads and installs all dependencies defined in `package.json`.
+
+---
+
+# 9. Build Stage
+
+The Build stage verifies that the application can be prepared successfully for execution.
+
+Jenkins executes the required build commands and checks for build-related errors.
+
+If the build is successful, Jenkins proceeds to the next stage.
+
+---
+
+# 10. Test Stage
+
+The Test stage is used to verify the application.
+
+Jenkins executes the configured test commands and checks whether the application passes the required validations.
+
+If the tests are successful, the pipeline continues.
+
+If a stage fails, Jenkins stops the pipeline and reports the failure.
+
+---
+
+# 11. Docker Build Stage
+
+After the application build and test stages are completed successfully, Jenkins creates the Docker image.
+
+The Docker image is created using the project's Dockerfile.
+
+This converts the application into a portable container image.
+
+The process is:
+
+**Source Code → Dockerfile → Docker Image**
+
+---
+
+# 12. Docker Container
+
+After successfully creating the Docker image, a Docker container is created from that image.
+
+The container runs the Node.js application in an isolated environment.
+
+The application can then be accessed through the configured port.
+
+The process is:
+
+**Docker Image → Docker Container → Running Application**
+
+---
+
+# 13. Jenkins Build Execution
+
+The Jenkins job is executed after configuring the pipeline.
+
+Jenkins performs all the configured stages automatically.
+
+The build console provides detailed information about every step performed by Jenkins.
+
+The console output helps verify:
+
+* GitHub checkout
+* Dependency installation
+* Build execution
+* Testing
+* Docker image creation
+* Container execution
+
+---
+
+# 14. Jenkins Pipeline Stages
+
+The Jenkins Pipeline view displays all stages of the CI/CD process.
+
+When every stage completes successfully, all stages are displayed as **green**.
 
 Example:
 
-FROM node:18
+**Checkout ✅ → Install Dependencies ✅ → Build ✅ → Test ✅ → Docker Build ✅ → Deploy ✅**
 
-WORKDIR /app
+This confirms that the complete pipeline executed successfully.
 
-COPY package*.json ./
+---
 
-RUN npm install
+# 15. Successful Build
 
-COPY . .
+After all stages are completed without errors, Jenkins marks the build as:
 
-EXPOSE 3000
+## ✅ SUCCESS
 
-CMD ["node", "server.js"]
-Dockerfile Explanation
-Instruction	Purpose
-FROM node:18	Uses Node.js base image
-WORKDIR /app	Sets application working directory
-COPY package*.json ./	Copies package files
-RUN npm install	Installs dependencies
-COPY . .	Copies application source code
-EXPOSE 3000	Exposes application port
-CMD	Starts the application
-🌐 Application
+The Jenkins console output shows that the pipeline completed successfully.
 
-The Node.js application runs inside the Docker container.
+This confirms that:
 
-The application is exposed through port:
+* Source code was retrieved successfully.
+* Dependencies were installed successfully.
+* Application build was successful.
+* Tests were completed successfully.
+* Docker image was created successfully.
+* Docker container was started successfully.
 
-3000
+---
 
-The application can be accessed using:
+# 16. Final Output
 
-http://localhost:3000
+The final result of the project is a successfully automated CI/CD pipeline.
 
-or through the server public IP when deployed on a cloud server.
+The application source code is maintained in GitHub, Jenkins automatically processes the project, Docker creates the application container, and the final application runs successfully.
 
-🧪 Testing
+### Complete Workflow
 
-The application is tested as part of the Jenkins pipeline.
-
-The testing stage ensures that the application works correctly before Docker deployment.
-
-Example command:
-
-npm test
-
-If the test stage is successful, Jenkins continues to the Docker build and deployment stages.
-
-If the test stage fails, the pipeline stops and the deployment is not performed.
-
-🔗 GitHub Integration
-
-The project source code is maintained in GitHub.
-
-GitHub is used for:
-
-Source code management
-Version control
-Jenkins integration
-Storing Jenkinsfile
-Storing Docker configuration
-Project documentation
-
-Repository:
-
-https://github.com/sindhupriya5e1/devops-task-2-jenkins
-
-⚙️ Jenkins Integration
-
-Jenkins is configured to retrieve the source code from GitHub and execute the pipeline.
-
-The Jenkins pipeline performs:
-
+```text
 GitHub Repository
        ↓
-Jenkins
+Jenkins Pipeline
        ↓
-Checkout
+Checkout Source Code
        ↓
-Build
+Install Dependencies
        ↓
-Test
+Build Application
        ↓
-Docker Build
+Run Tests
        ↓
-Deploy
+Build Docker Image
        ↓
-Success
-🐳 Docker Deployment Verification
+Run Docker Container
+       ↓
+Application Running
+       ↓
+Jenkins Build SUCCESS ✅
+```
 
-The Docker container can be verified using:
+---
 
-docker ps
+# 17. Screenshots
 
-The running container should display the application port mapping:
+The following screenshots are included as proof of the successful implementation:
 
-3000:3000
+### Screenshot 1 – GitHub Repository
 
-Docker images can be checked using:
+Shows the project source code and repository files.
 
-docker images
-📸 Project Screenshots
-1. GitHub Repository
+### Screenshot 2 – Jenkins Job / Build
 
-This screenshot shows the GitHub repository containing the project files, Jenkinsfile, Docker configuration, application files, and README.
+Shows the Jenkins project and executed build.
 
-2. Jenkins Pipeline
+### Screenshot 3 – Jenkins Console Output
 
-This screenshot demonstrates the Jenkins pipeline execution.
+Shows the complete console output with the final **SUCCESS** status.
 
-The pipeline stages are executed in sequence:
+### Screenshot 4 – Jenkins Pipeline Stages
 
-Checkout
-   ↓
-Build
-   ↓
-Test
-   ↓
-Docker Build
-   ↓
-Deploy
+Shows all pipeline stages completed successfully in green.
 
-3. Jenkins Console Output
+### Screenshot 5 – Jenkins Pipeline Steps
 
-The Jenkins console output demonstrates the actual execution of the CI/CD pipeline.
+Shows the individual steps executed during the CI/CD process.
 
-It verifies:
+---
 
-Source code checkout
-Dependency installation
-Testing
-Docker image creation
-Docker deployment
-Successful pipeline completion
+# 18. Conclusion
 
-4. Docker Container
+This project demonstrates how a simple Node.js application can be integrated with a complete CI/CD workflow using GitHub, Jenkins, and Docker.
 
-This screenshot shows the Docker container created during the deployment process.
+The pipeline automates the major software delivery steps, reduces manual effort, and provides a repeatable process for building, testing, containerizing, and deploying an application.
 
-The application is running inside the Docker container and is exposed through port 3000.
+The successful Jenkins build and green pipeline stages confirm that the CI/CD pipeline has been implemented and executed successfully.
 
-5. Application Output
+## ✅ Final Status
 
-This screenshot shows the final application output after successful deployment.
+**CI/CD Pipeline: SUCCESS**
 
-📊 CI/CD Result
+**Application Build: SUCCESS**
 
-The completed pipeline successfully demonstrates:
+**Docker Build: SUCCESS**
 
-Component	Result
-GitHub Integration	✅ Successful
-Jenkins Checkout	✅ Successful
-Dependency Installation	✅ Successful
-Application Testing	✅ Successful
-Docker Image Build	✅ Successful
-Docker Container Deployment	✅ Successful
-Application Verification	✅ Successful
-CI/CD Pipeline	✅ Completed
-🔐 Security Considerations
-
-For a production environment:
-
-Do not commit passwords or API tokens to GitHub.
-Do not expose Jenkins credentials.
-Use Jenkins Credentials Manager.
-Use GitHub Secrets for sensitive information.
-Configure proper firewall/security-group rules.
-Use HTTPS for production applications.
-Keep Jenkins, Docker, Node.js, and dependencies updated.
-📚 Key DevOps Concepts Demonstrated
-Continuous Integration
-
-Continuous Integration automatically builds and tests application changes.
-
-Benefits:
-
-Early bug detection
-Automated testing
-Faster feedback
-Better code quality
-Continuous Deployment
-
-Continuous Deployment automatically deploys successfully tested application changes.
-
-In this project:
-
-Code Change
-    ↓
-GitHub
-    ↓
-Jenkins
-    ↓
-Build
-    ↓
-Test
-    ↓
-Docker Build
-    ↓
-Deployment
-Jenkins
-
-Jenkins is an automation server used to implement CI/CD pipelines.
-
-In this project Jenkins performs:
-
-Source Checkout
-Dependency Installation
-Testing
-Docker Build
-Deployment
-Docker
-
-Docker packages the application and its runtime dependencies into a container.
-
-This provides a consistent environment for running the application.
-
-Jenkinsfile
-
-The Jenkinsfile defines the CI/CD pipeline as code.
-
-Advantages:
-
-Version controlled
-Reproducible
-Easy to maintain
-Stored together with source code
-💡 Why CI/CD Is Important
-
-Without CI/CD:
-
-Developer
-   ↓
-Manual Build
-   ↓
-Manual Testing
-   ↓
-Manual Deployment
-
-With CI/CD:
-
-Developer
-   ↓
-Git Push
-   ↓
-Jenkins
-   ↓
-Automated Build
-   ↓
-Automated Test
-   ↓
-Docker Build
-   ↓
-Deployment
-
-CI/CD reduces repetitive manual work and makes software delivery faster and more reliable.
-
-🎓 Learning Outcomes
-
-Through this project, I gained practical experience with:
-
-Jenkins Pipeline creation
-Jenkinsfile configuration
-GitHub integration
-CI/CD automation
-Docker image creation
-Docker container deployment
-Node.js application deployment
-Automated testing
-Linux/Cloud environment
-Pipeline troubleshooting
-DevOps workflow
-✅ Conclusion
-
-This project successfully demonstrates a complete CI/CD pipeline using Jenkins, GitHub, Node.js, and Docker.
-
-The application source code is maintained in GitHub, Jenkins automates the build and testing process, Docker containerizes the application, and the final application is deployed through the CI/CD pipeline.
-
-The project provides practical understanding of DevOps automation and the complete software delivery lifecycle.
-
-👨‍💻 Project Status
-
-Status: ✅ Successfully Completed
-
-Technologies: Jenkins | GitHub | Node.js | Docker | CI/CD
+**Deployment: SUCCESS**
