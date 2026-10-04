@@ -82,11 +82,11 @@ jenkins-cicd-task2/
 ├── package-lock.json
 │
 └── Screenshots/
-    ├── Screenshot_2026-10-04-13-29-16-03_e5d3893ac03954c6bb675ef2555b879b.jpg
-    ├── Screenshot_2026-10-04-13-29-21-33_e5d3893ac03954c6bb675ef2555b879b.jpg
-    ├── Screenshot_2026-10-04-13-29-25-35_e5d3893ac03954c6bb675ef2555b879b.jpg
-    ├── Screenshot_2026-10-04-13-29-30-03_e5d3893ac03954c6bb675ef2555b879b.jpg
-    └── Screenshot_2026-10-04-13-29-34-85_e5d3893ac03954c6bb675ef2555b879b.jpg
+    ├── screenshot1.jpg
+    ├── screenshot2.jpg
+    ├── screenshot3.jpg
+    ├── screenshot4.jpg
+    └── screenshot5.jpg
 ```
 
 ---
@@ -577,53 +577,36 @@ Expected port mapping:
 
 ---
 
+#
 # 📸 Project Screenshots
 
 ## 1. GitHub Repository
 
-The GitHub repository contains the complete application source code, Docker configuration, Jenkins pipeline, tests, README, and screenshots.
-
-![GitHub Repository](Screenshots/Screenshot_2026-10-04-13-29-16-03_e5d3893ac03954c6bb675ef2555b879b.jpg)
+![GitHub Repository](Screenshots/screenshot1.jpg)
 
 ---
 
 ## 2. Jenkins Pipeline Success
 
-This screenshot shows the Jenkins pipeline completing the required stages successfully.
-
-### Pipeline stages demonstrated
-
-- Checkout
-- Build
-- Test
-- Docker Build
-- Docker Run
-
-![Jenkins Pipeline Success](Screenshots/Screenshot_2026-10-04-13-29-21-33_e5d3893ac03954c6bb675ef2555b879b.jpg)
+![Jenkins Pipeline Success](Screenshots/screenshot2.jpg)
 
 ---
 
 ## 3. Jenkins Console Output - SUCCESS
 
-The Jenkins console output shows the pipeline execution and successful completion of all required steps.
-
-![Jenkins Console Output](Screenshots/Screenshot_2026-10-04-13-29-25-35_e5d3893ac03954c6bb675ef2555b879b.jpg)
+![Jenkins Console Output](Screenshots/screenshot3.jpg)
 
 ---
 
 ## 4. Jenkins Pipeline Stages
 
-The Jenkins pipeline stages are displayed successfully, showing the CI/CD workflow execution.
-
-![Jenkins Pipeline Stages](Screenshots/Screenshot_2026-10-04-13-29-30-03_e5d3893ac03954c6bb675ef2555b879b.jpg)
+![Jenkins Pipeline Stages](Screenshots/screenshot4.jpg)
 
 ---
 
-## 5. Jenkins Build / Pipeline Steps
+## 5. Jenkins Pipeline Steps
 
-This screenshot demonstrates the Jenkins build and pipeline steps executed as part of the CI/CD process.
-
-![Jenkins Pipeline Steps](Screenshots/Screenshot_2026-10-04-13-29-34-05_e5d3893ac03954c6bb675ef2555b879b.jpg)
+![Jenkins Pipeline Steps](Screenshots/screenshot5.jpg) 
 
 
 # 📊 CI/CD Result
